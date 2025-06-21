@@ -1,10 +1,13 @@
-package com.example.clubhub;
+package com.example.clubhub.introducepage;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.clubhub.homepage.HomePage;
+import com.example.clubhub.R;
 
 public class IntroducePage extends AppCompatActivity {
     @Override
