@@ -10,19 +10,17 @@ public class IntroducePage extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_introduce_page); // Đảm bảo layout đúng
+        setContentView(R.layout.activity_introduce_page);
 
-        // Tìm nút Explore trong IntroductPage
         Button exploreButton = findViewById(R.id.btn_explore);
 
-        // Sự kiện khi người dùng nhấn nút
         exploreButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Chuyển đến MainActivity khi nhấn nút Explore
-                Intent intent = new Intent(IntroducePage.this, MainActivity.class);
+                // Chuyển sang HomePage thay vì MainActivity
+                Intent intent = new Intent(IntroducePage.this, HomePage.class);
                 startActivity(intent);
-                finish();  // Đảm bảo đóng IntroductPage khi chuyển đến MainActivity
+                finish();
             }
         });
     }
