@@ -88,13 +88,13 @@
                 android:id="@+id/tv_bullets"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:fontFamily="sans-serif"
                 android:text="Manage clubs and events effortlessly\n\nExplore clubs and sign up for events\n\nConnect and engage with fellow members\n\nRole-based permissions for better control"
+                android:textAlignment="center"
                 android:textColor="#000000"
                 android:textSize="16sp"
-                android:textStyle="bold"
-                android:textAlignment="center"
-                android:layout_marginTop="40dp"
-                android:fontFamily="sans-serif" />
+                android:textStyle="bold" />
         </LinearLayout>
     </ScrollView>
 
