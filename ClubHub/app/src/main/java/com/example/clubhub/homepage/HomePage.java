@@ -66,35 +66,6 @@ public class HomePage extends AppCompatActivity {
                 R.drawable.sample_img_6, "Comment: Great idea, I'm joining!"
         ));
 
-        postList.add(new Post(
-                R.drawable.ic_club_logo_7, "Book Club",
-                R.drawable.ic_user_avt_7, "Anna Chen",
-                "Next book: 'The Alchemist' by Paulo Coelho.",
-                R.drawable.sample_img_7, "Comment: Already started reading!"
-        ));
-
-        postList.add(new Post(
-                R.drawable.ic_club_logo_8, "Volleyball",
-                R.drawable.ic_user_avt_8, "David Kim",
-                "Friendly match at Central Park tomorrow morning.",
-                R.drawable.sample_img_8, "Comment: Let's play hard!"
-        ));
-
-        postList.add(new Post(
-                R.drawable.ic_club_logo_9, "Running",
-                R.drawable.ic_user_avt_9, "Grace Hoang",
-                "Morning run at 6am. Fresh air, good vibes!",
-                R.drawable.sample_img_9, "Comment: I’ll set my alarm!"
-        ));
-
-        postList.add(new Post(
-                R.drawable.ic_club_logo_10, "Coding",
-                R.drawable.ic_user_avt_10, "Ben Pham",
-                "Hackathon sign-up is open! Build, learn, win.",
-                R.drawable.sample_img_10, "Comment: Joining for sure!"
-        ));
-
-
         postAdapter = new PostAdapter(postList);
         recyclerView.setAdapter(postAdapter);
     }
