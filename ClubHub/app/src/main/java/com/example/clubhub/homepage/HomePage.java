@@ -1,5 +1,6 @@
 package com.example.clubhub.homepage;
 
+import android.content.Intent;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -7,6 +8,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.clubhub.R;
 import java.util.ArrayList;
 import java.util.List;
+import com.example.clubhub.profile.LoginActivity;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+
 
 public class HomePage extends AppCompatActivity {
 
@@ -68,5 +72,17 @@ public class HomePage extends AppCompatActivity {
 
         postAdapter = new PostAdapter(postList);
         recyclerView.setAdapter(postAdapter);
+        BottomNavigationView bottomNav = findViewById(R.id.bottom_nav);
+        bottomNav.setOnItemSelectedListener(item -> {
+            if (item.getItemId() == R.id.nav_profile) {
+                // Chuyển sang LoginActivity (ở package profile)
+                Intent intent = new Intent(HomePage.this, LoginActivity.class);
+                startActivity(intent);
+                return true;
+            }
+            // Các tab khác nếu muốn xử lý thêm ở đây (nav_post, nav_club, nav_event)
+            return false;
+        });
     }
+
 }
