@@ -18,7 +18,7 @@
             android:id="@+id/img_club"
             android:layout_width="36dp"
             android:layout_height="36dp"
-            android:src="@drawable/ic_club_logo_1"
+            android:src="@drawable/ic_club_logo_default"
             android:background="@drawable/bg_circle"
             android:scaleType="centerCrop"/>
 
@@ -48,7 +48,7 @@
                     android:id="@+id/img_user"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
-                    android:src="@drawable/ic_user_avt_1"
+                    android:src="@drawable/ic_user_avt_default"
                     android:background="@drawable/bg_circle"
                     android:scaleType="centerCrop"
                     android:layout_marginEnd="4dp"/>
@@ -81,7 +81,7 @@
         android:id="@+id/img_post"
         android:layout_width="match_parent"
         android:layout_height="180dp"
-        android:src="@drawable/sample_img_1"
+        android:src="@drawable/sample_img_default"
         android:scaleType="centerCrop"
         android:layout_marginTop="6dp"
         android:background="@android:color/darker_gray"
