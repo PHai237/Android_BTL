@@ -6,9 +6,13 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.bumptech.glide.Glide;
 import com.example.clubhub.R;
+
 import java.util.List;
 
 public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder> {
@@ -29,13 +33,28 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder
     @Override
     public void onBindViewHolder(@NonNull PostViewHolder holder, int position) {
         Post post = postList.get(position);
-        holder.imgClub.setImageResource(post.clubAvatarRes);
         holder.tvClubName.setText(post.clubName);
-        holder.imgUser.setImageResource(post.userAvatarRes);
         holder.tvUserName.setText(post.userName);
         holder.tvContent.setText(post.content);
-        holder.imgPost.setImageResource(post.imageRes);
-        // Xử lý nút xóa, comment... tại đây nếu muốn
+        holder.tvComment.setText(post.comment);
+
+        // Load avatar CLB
+        Glide.with(holder.itemView.getContext())
+                .load(post.clubAvatarUrl)
+                .placeholder(R.drawable.ic_club_logo_default)
+                .into(holder.imgClub);
+
+        // Load avatar user
+        Glide.with(holder.itemView.getContext())
+                .load(post.userAvatarUrl)
+                .placeholder(R.drawable.ic_user_avt_default)
+                .into(holder.imgUser);
+
+        // Load ảnh bài post
+        Glide.with(holder.itemView.getContext())
+                .load(post.imageUrl)
+                .placeholder(R.drawable.sample_img_default)
+                .into(holder.imgPost);
     }
 
     @Override
@@ -58,5 +77,11 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder
             imgPost = itemView.findViewById(R.id.img_post);
             tvComment = itemView.findViewById(R.id.tv_comment);
         }
+    }
+
+    public void updateData(List<Post> newPostList) {
+        postList.clear();
+        postList.addAll(newPostList);
+        notifyDataSetChanged();
     }
 }
