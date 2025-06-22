@@ -1,10 +1,13 @@
 package com.example.clubhub.homepage;
 
+import android.content.Intent;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import com.example.clubhub.profile.LoginActivity; // import LoginActivity ở package profile
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import com.example.clubhub.R;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -57,5 +60,17 @@ public class HomePage extends AppCompatActivity {
                         }
                     }
                 });
+        // Thiết lập sự kiện cho BottomNavigationView
+        BottomNavigationView bottomNav = findViewById(R.id.bottom_nav);
+        bottomNav.setOnItemSelectedListener(item -> {
+            if (item.getItemId() == R.id.nav_profile) {
+                // Chuyển sang LoginActivity (ở package profile)
+                Intent intent = new Intent(HomePage.this, LoginActivity.class);
+                startActivity(intent);
+                return true;
+            }
+            // Các tab khác nếu muốn xử lý thêm ở đây (nav_post, nav_club, nav_event)
+            return false;
+        });
     }
 }
