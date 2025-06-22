@@ -30,6 +30,9 @@
         <activity
             android:name=".MainActivity"
             android:exported="true" />
+        <activity android:name=".profile.LoginActivity" android:exported="true"/>
+        <activity android:name=".profile.SignUpActivity" android:exported="true"/>
+        <activity android:name=".profile.ProfileActivity" android:exported="true"/>
 
     </application>
 
