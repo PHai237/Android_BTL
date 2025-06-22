@@ -117,8 +117,6 @@
         android:maxLines="2"
         android:ellipsize="none"/>
 
-
-
     <!-- Email -->
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/email_layout"
@@ -149,6 +147,21 @@
             android:padding="10dp"/>
     </com.google.android.material.textfield.TextInputLayout>
 
+    <!-- Email error -->
+    <TextView
+        android:id="@+id/tvErrorEmail"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textColor="#FF0000"
+        android:textSize="20sp"
+        android:layout_marginTop="2dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        app:layout_constraintTop_toBottomOf="@id/email_layout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:visibility="gone"/>
+
     <!-- Password -->
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/pass_layout"
@@ -165,7 +178,7 @@
         app:boxStrokeColor="#000"
         app:boxStrokeWidth="2dp"
         app:boxStrokeWidthFocused="2dp"
-        app:layout_constraintTop_toBottomOf="@id/email_layout"
+        app:layout_constraintTop_toBottomOf="@id/tvErrorEmail"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
@@ -180,6 +193,21 @@
             android:inputType="textPassword"/>
     </com.google.android.material.textfield.TextInputLayout>
 
+    <!-- Password error -->
+    <TextView
+        android:id="@+id/tvErrorPassword"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textColor="#FF0000"
+        android:textSize="20sp"
+        android:layout_marginTop="2dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        app:layout_constraintTop_toBottomOf="@id/pass_layout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:visibility="gone"/>
+
     <!-- Forgot password -->
     <TextView
         android:id="@+id/tv_forgot_password"
@@ -189,7 +217,7 @@
         android:textColor="#000"
         android:textStyle="bold"
         android:textSize="16sp"
-        app:layout_constraintTop_toBottomOf="@id/pass_layout"
+        app:layout_constraintTop_toBottomOf="@id/tvErrorPassword"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:gravity="center"
