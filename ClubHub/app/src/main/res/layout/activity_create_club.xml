@@ -18,6 +18,7 @@
         android:paddingEnd="18dp">
 
         <ImageView
+            android:id="@+id/btn_back"
             android:layout_width="28dp"
             android:layout_height="28dp"
             android:src="@drawable/ic_back"
@@ -79,17 +80,18 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_club_name"
                     android:layout_width="match_parent"
-                    android:layout_height="48dp"
+                    android:layout_height="53dp"
+                    android:fontFamily="sans-serif"
                     android:hint="Enter Club Name"
+                    android:inputType="text"
                     android:paddingStart="16dp"
                     android:paddingEnd="16dp"
+                    android:singleLine="true"
                     android:textColor="#222"
                     android:textColorHint="#B5C4C7"
-                    android:textSize="16sp"
-                    android:fontFamily="sans-serif"
-                    android:inputType="text"
-                    android:singleLine="true"/>
+                    android:textSize="16sp" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <!-- Description -->
@@ -118,17 +120,18 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_club_desc"
                     android:layout_width="match_parent"
-                    android:layout_height="48dp"
+                    android:layout_height="53dp"
+                    android:fontFamily="sans-serif"
                     android:hint="Enter Description"
+                    android:inputType="text"
                     android:paddingStart="16dp"
                     android:paddingEnd="16dp"
+                    android:singleLine="true"
                     android:textColor="#222"
                     android:textColorHint="#B5C4C7"
-                    android:textSize="16sp"
-                    android:fontFamily="sans-serif"
-                    android:inputType="text"
-                    android:singleLine="true"/>
+                    android:textSize="16sp" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <!-- Add Image -->
@@ -193,17 +196,18 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
                 <AutoCompleteTextView
+                    android:id="@+id/actv_visibility"
                     android:layout_width="match_parent"
-                    android:layout_height="48dp"
+                    android:layout_height="53dp"
+                    android:clickable="true"
+                    android:fontFamily="sans-serif"
                     android:hint="Select"
                     android:paddingStart="16dp"
                     android:paddingEnd="16dp"
+                    android:singleLine="true"
                     android:textColor="#222"
                     android:textColorHint="#B5C4C7"
-                    android:textSize="16sp"
-                    android:fontFamily="sans-serif"
-                    android:inputType="text"
-                    android:singleLine="true"/>
+                    android:textSize="16sp" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <!-- Type -->
@@ -233,21 +237,23 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
                 <AutoCompleteTextView
+                    android:id="@+id/actv_type"
                     android:layout_width="match_parent"
-                    android:layout_height="48dp"
+                    android:layout_height="53dp"
+                    android:clickable="true"
+                    android:fontFamily="sans-serif"
                     android:hint="Select"
                     android:paddingStart="16dp"
                     android:paddingEnd="16dp"
+                    android:singleLine="true"
                     android:textColor="#222"
                     android:textColorHint="#B5C4C7"
-                    android:textSize="16sp"
-                    android:fontFamily="sans-serif"
-                    android:inputType="text"
-                    android:singleLine="true"/>
+                    android:textSize="16sp" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <!-- Create button -->
             <Button
+                android:id="@+id/btn_create_club"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:text="Create"
