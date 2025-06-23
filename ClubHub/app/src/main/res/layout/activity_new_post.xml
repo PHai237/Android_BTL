@@ -1,14 +1,41 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:padding="20dp">
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20dp">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <!-- Header với nút quay lại và tiêu đề -->
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Tạo bài đăng mới"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:layout_marginBottom="20dp"/>
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginBottom="10dp">
+
+        <ImageButton
+            android:id="@+id/btn_back"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="?android:attr/selectableItemBackground"
+            android:src="@drawable/ic_back"
+            android:contentDescription="Quay lại"
+        />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tạo bài đăng mới"
+            android:textSize="20sp"
+            android:textStyle="bold"/>
+    </LinearLayout>
+
+    <!-- Spinner chọn CLB để đăng bài -->
+    <Spinner
+        android:id="@+id/spinner_club"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginBottom="14dp"
+        android:background="@drawable/rounded_edittext_bg"/>
 
     <EditText
         android:id="@+id/et_content"
@@ -18,6 +45,39 @@
         android:gravity="top"
         android:background="@drawable/rounded_edittext_bg"/>
 
+    <!-- Dòng nhập link + nút tìm ảnh -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="12dp"
+        android:gravity="center_vertical">
+
+        <EditText
+            android:id="@+id/et_image_url"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/rounded_edittext_bg"
+            android:hint="Dán link ảnh online (tùy chọn)"
+            android:minHeight="48dp" />
+
+        <Button
+            android:id="@+id/btn_find_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tìm ảnh"
+            android:layout_marginStart="8dp"/>
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Dán link ảnh từ Unsplash, Pexels, Imgur, hoặc Google Drive (công khai)..."
+        android:textSize="13sp"
+        android:textColor="#888"
+        android:layout_marginTop="4dp"/>
+
     <ImageView
         android:id="@+id/img_preview"
         android:layout_width="match_parent"
@@ -25,14 +85,7 @@
         android:layout_marginTop="12dp"
         android:background="@android:color/darker_gray"
         android:scaleType="centerCrop"
-        android:src="@drawable/sample_img_default"/>
-
-    <Button
-        android:id="@+id/btn_choose_img"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Chọn ảnh"
-        android:layout_marginTop="10dp"/>
+        android:visibility="gone" />
 
     <Button
         android:id="@+id/btn_post"
