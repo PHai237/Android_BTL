@@ -1,5 +1,6 @@
 package com.example.clubhub.homepage;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -21,7 +22,7 @@ public class NewPostActivity extends AppCompatActivity {
     private Button btnFindImage, btnPost;
     private String email;
 
-    // Dùng để lưu tạm thông tin các CLB user tham gia
+    // Lưu tạm thông tin các CLB user tham gia
     private List<Club> clubList = new ArrayList<>();
 
     @Override
@@ -42,7 +43,7 @@ public class NewPostActivity extends AppCompatActivity {
 
         email = getIntent().getStringExtra("email");
 
-        // Hiển thị preview ảnh khi dán link
+        // Preview ảnh khi dán link
         etImageUrl.addTextChangedListener(new TextWatcher() {
             @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
             @Override public void onTextChanged(CharSequence s, int start, int before, int count) {
@@ -69,12 +70,27 @@ public class NewPostActivity extends AppCompatActivity {
             String content = etContent.getText().toString().trim();
             String imageUrl = etImageUrl.getText().toString().trim();
 
+            // Nếu chưa có CLB: Hiện popup, không đăng
+            if (clubList.isEmpty()) {
+                new AlertDialog.Builder(this)
+                        .setTitle("Bạn chưa tham gia CLB nào")
+                        .setMessage("Bạn cần tham gia ít nhất một câu lạc bộ để đăng bài!\nHãy tham gia CLB trước khi đăng bài.")
+                        .setPositiveButton("OK", null)
+                        .setNegativeButton("Khám phá CLB", (dialog, which) -> {
+                            // TODO: Mở màn hình khám phá CLB nếu muốn
+                            // startActivity(new Intent(this, ExploreClubActivity.class));
+                        })
+                        .show();
+                return;
+            }
+
             if (content.isEmpty()) {
                 etContent.setError("Vui lòng nhập nội dung");
                 return;
             }
+
             int selectedIdx = spinnerClub.getSelectedItemPosition();
-            if (clubList.isEmpty() || selectedIdx < 0) {
+            if (selectedIdx < 0) {
                 Toast.makeText(this, "Bạn cần chọn câu lạc bộ để đăng bài!", Toast.LENGTH_SHORT).show();
                 return;
             }
@@ -87,7 +103,6 @@ public class NewPostActivity extends AppCompatActivity {
     private void loadUserClubs() {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-        // Lấy tất cả clubs mà user này là member
         db.collection("Clubs")
                 .whereArrayContains("members", email)
                 .get()
@@ -104,14 +119,11 @@ public class NewPostActivity extends AppCompatActivity {
                     }
 
                     if (clubList.isEmpty()) {
-                        // Không có CLB nào
+                        // Hiện chỉ 1 dòng spinner, vẫn enable để hiển thị cho đẹp
                         clubNameList = Collections.singletonList("Bạn chưa tham gia câu lạc bộ nào");
                         spinnerClub.setEnabled(false);
-                        btnPost.setEnabled(false);
-                        Toast.makeText(this, "Bạn cần tham gia CLB để đăng bài!", Toast.LENGTH_LONG).show();
                     } else {
                         spinnerClub.setEnabled(true);
-                        btnPost.setEnabled(true);
                     }
 
                     ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, clubNameList);
@@ -121,7 +133,6 @@ public class NewPostActivity extends AppCompatActivity {
                 .addOnFailureListener(e -> {
                     Toast.makeText(this, "Lỗi lấy danh sách CLB: " + e.getMessage(), Toast.LENGTH_LONG).show();
                     spinnerClub.setEnabled(false);
-                    btnPost.setEnabled(false);
                 });
     }
 
@@ -129,7 +140,7 @@ public class NewPostActivity extends AppCompatActivity {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         String postId = db.collection("posts").document().getId();
 
-        // Lấy user info để lưu vào bài post (ví dụ lấy avatar, tên...)
+        // Lấy user info để lưu vào bài post (lấy avatar, tên...)
         db.collection("Users").document(email)
                 .get()
                 .addOnSuccessListener(documentSnapshot -> {
@@ -145,7 +156,7 @@ public class NewPostActivity extends AppCompatActivity {
                     post.put("imageUrl", imageUrl);
                     post.put("createdAt", new Date());
 
-                    // Thêm thông tin club
+                    // Thông tin club
                     post.put("clubId", club.clubId);
                     post.put("clubName", club.clubName);
                     post.put("clubAvatarUrl", club.clubAvatarUrl);
@@ -161,7 +172,7 @@ public class NewPostActivity extends AppCompatActivity {
                 });
     }
 
-    // Class đơn giản đại diện cho Club
+    // Class đại diện cho Club
     private static class Club {
         String clubId, clubName, clubAvatarUrl;
         Club(String id, String name, String avatar) {
