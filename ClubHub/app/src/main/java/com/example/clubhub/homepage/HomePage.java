@@ -1,6 +1,7 @@
 package com.example.clubhub.homepage;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -64,13 +65,23 @@ public class HomePage extends AppCompatActivity {
         BottomNavigationView bottomNav = findViewById(R.id.bottom_nav);
         bottomNav.setOnItemSelectedListener(item -> {
             if (item.getItemId() == R.id.nav_profile) {
-                // Chuyển sang LoginActivity (ở package profile)
-                Intent intent = new Intent(HomePage.this, LoginActivity.class);
+                SharedPreferences prefs = getSharedPreferences("USER_SESSION", MODE_PRIVATE);
+                String email = prefs.getString("email", null);
+                Intent intent;
+                if (email == null) {
+                    // Chưa login, chuyển sang LoginActivity
+                    intent = new Intent(HomePage.this, LoginActivity.class);
+                } else {
+                    // Đã login, chuyển sang ProfileActivity
+                    intent = new Intent(HomePage.this, com.example.clubhub.profile.ProfileActivity.class);
+                    intent.putExtra("email", email);
+                }
                 startActivity(intent);
                 return true;
             }
-            // Các tab khác nếu muốn xử lý thêm ở đây (nav_post, nav_club, nav_event)
+            // Xử lý tab khác ở đây nếu có
             return false;
         });
+
     }
 }

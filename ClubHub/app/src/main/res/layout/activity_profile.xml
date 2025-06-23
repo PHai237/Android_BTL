@@ -43,15 +43,12 @@
         android:layout_height="100dp"
         android:layout_marginTop="22dp"
         android:layout_marginBottom="10dp"
-        android:src="@android:drawable/sym_def_app_icon"
+        android:src="@drawable/ic_user_avt_default"
         android:background="@android:color/transparent"
         android:scaleType="centerCrop"
         app:layout_constraintTop_toBottomOf="@id/header"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        />
-
-    <!-- Name label -->
+        app:layout_constraintEnd_toEndOf="parent"/>
 
     <ImageView
         android:id="@+id/img_edit"
@@ -64,7 +61,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/img_avatar" />
 
-    <!-- Name EditText -->
+    <!-- Name label -->
     <TextView
         android:id="@+id/lbl_name"
         android:layout_width="0dp"
@@ -81,33 +78,29 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/img_avatar" />
 
-    <EditText
+    <!-- Name Value -->
+    <TextView
         android:id="@+id/tv_name"
         android:layout_width="0dp"
-        android:layout_height="44dp"
-        android:background="@android:color/white"
-        android:text="Bruce Lee"
-        android:textStyle="bold"
-        android:textSize="16sp"
-        android:textColor="#000"
-        android:padding="10dp"
-        android:gravity="center_vertical"
-        app:layout_constraintTop_toBottomOf="@id/lbl_name"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:layout_marginStart="36dp"
         android:layout_marginEnd="36dp"
-        android:layout_marginTop="4dp"/>
+        android:text="Bruce Lee"
+        android:textColor="#000"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@id/lbl_name"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <!-- Email label -->
-
-    <!-- Email EditText -->
     <TextView
         android:id="@+id/lbl_email"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="36dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="18dp"
         android:layout_marginEnd="36dp"
         android:text="Email"
         android:textColor="#000"
@@ -118,61 +111,55 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_name" />
 
-    <EditText
+    <!-- Email Value -->
+    <TextView
         android:id="@+id/tv_email"
         android:layout_width="0dp"
         android:layout_height="44dp"
-        android:background="#cccccc"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginEnd="36dp"
         android:text="user@gmail.com"
-        android:textStyle="bold"
-        android:textSize="16sp"
         android:textColor="#000"
-        android:padding="10dp"
+        android:textStyle="bold"
+        android:background="#ccc"
         android:gravity="center_vertical"
         app:layout_constraintTop_toBottomOf="@id/lbl_email"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginStart="36dp"
-        android:layout_marginEnd="36dp"
-        android:layout_marginTop="4dp"/>
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <!-- Phone label -->
-
-    <!-- Phone EditText -->
-
     <TextView
         android:id="@+id/lbl_phone"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="36dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="18dp"
         android:layout_marginEnd="36dp"
         android:text="Phone Number"
         android:textColor="#000"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_email" />
 
-    <EditText
+    <!-- Phone Value -->
+    <TextView
         android:id="@+id/tv_phone"
         android:layout_width="0dp"
         android:layout_height="44dp"
-        android:background="@android:color/white"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginEnd="36dp"
         android:text="0913789654"
-        android:textStyle="bold"
-        android:textSize="16sp"
         android:textColor="#000"
-        android:padding="10dp"
+        android:textStyle="bold"
         android:gravity="center_vertical"
         app:layout_constraintTop_toBottomOf="@id/lbl_phone"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginStart="36dp"
-        android:layout_marginEnd="36dp"
-        android:layout_marginTop="4dp"/>
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <!-- Log out button -->
     <Button

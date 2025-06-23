@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.clubhub">
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 
     <application
         android:allowBackup="true"
@@ -33,7 +34,7 @@
         <activity android:name=".profile.LoginActivity" android:exported="true"/>
         <activity android:name=".profile.SignUpActivity" android:exported="true"/>
         <activity android:name=".profile.ProfileActivity" android:exported="true"/>
-
+        <activity android:name=".profile.EditProfileActivity" android:exported="true"/>
     </application>
 
 </manifest>
