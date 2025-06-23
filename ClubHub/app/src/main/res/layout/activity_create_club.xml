@@ -21,9 +21,9 @@
             android:layout_width="28dp"
             android:layout_height="28dp"
             android:src="@drawable/ic_back"
-            android:tint="#111"
             android:contentDescription="Back"
-            android:background="@android:color/transparent" />
+            android:background="@android:color/transparent"
+            app:tint="#111" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -151,10 +151,10 @@
                     <ImageView
                         android:layout_width="28dp"
                         android:layout_height="28dp"
-                        android:src="@drawable/ic_add_image"
+                        android:src="@drawable/ic_add"
                         android:layout_gravity="center"
-                        android:tint="#444"
-                        android:contentDescription="Add Image"/>
+                        android:contentDescription="Add Image"
+                        app:tint="#444" />
                 </com.google.android.material.card.MaterialCardView>
                 <TextView
                     android:layout_width="wrap_content"

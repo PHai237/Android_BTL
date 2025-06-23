@@ -74,7 +74,7 @@ public class NewPostActivity extends AppCompatActivity {
             if (clubList.isEmpty()) {
                 new AlertDialog.Builder(this)
                         .setTitle("Bạn chưa tham gia CLB nào")
-                        .setMessage("Bạn cần tham gia ít nhất một câu lạc bộ để đăng bài!\nHãy tham gia CLB trước khi đăng bài.")
+                        .setMessage("Bạn cần tham gia ít nhất một câu lạc bộ để đăng bài!")
                         .setPositiveButton("OK", null)
                         .setNegativeButton("Khám phá CLB", (dialog, which) -> {
                             // TODO: Mở màn hình khám phá CLB nếu muốn

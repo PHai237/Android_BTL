@@ -41,8 +41,8 @@
             android:layout_width="28dp"
             android:layout_height="28dp"
             android:src="@drawable/ic_edit"
-            android:tint="#111"
-            android:contentDescription="Menu"/>
+            android:contentDescription="Menu"
+            app:tint="#111" />
     </LinearLayout>
 
     <ScrollView
@@ -61,7 +61,6 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#FFF"
                 android:orientation="vertical"
                 android:padding="18dp"
                 android:elevation="0dp"
@@ -123,10 +122,10 @@
                         android:layout_width="28dp"
                         android:layout_height="28dp"
                         android:src="@drawable/ic_edit"
-                        android:tint="#111"
                         android:contentDescription="Edit"
                         android:padding="4dp"
-                        android:layout_marginLeft="10dp"/>
+                        android:layout_marginLeft="10dp"
+                        app:tint="#111" />
                 </LinearLayout>
 
                 <!-- Description -->
