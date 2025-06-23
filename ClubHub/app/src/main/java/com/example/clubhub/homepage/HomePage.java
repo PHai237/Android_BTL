@@ -3,6 +3,9 @@ package com.example.clubhub.homepage;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageButton;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -82,6 +85,21 @@ public class HomePage extends AppCompatActivity {
             // Xử lý tab khác ở đây nếu có
             return false;
         });
+
+        ImageButton btnCreatePost = findViewById(R.id.btn_create_post);
+        SharedPreferences prefs = getSharedPreferences("USER_SESSION", MODE_PRIVATE);
+        String email = prefs.getString("email", null);
+
+        if (email == null) {
+            btnCreatePost.setVisibility(View.GONE); // Guest: ẩn nút
+        } else {
+            btnCreatePost.setVisibility(View.VISIBLE);
+            btnCreatePost.setOnClickListener(v -> {
+                Intent intent = new Intent(HomePage.this, NewPostActivity.class);
+                intent.putExtra("email", email);
+                startActivity(intent);
+            });
+        }
 
     }
 }
