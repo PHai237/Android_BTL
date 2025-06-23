@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#FFF">
+
+    <!-- Header -->
+    <!-- Header -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:background="#42FFC6"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingStart="14dp"
+        android:paddingEnd="14dp">
+
+        <!-- CLUBHUB -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="CLUB"
+            android:textColor="#111"
+            android:textSize="21sp"
+            android:fontFamily="sans-serif"
+            android:textStyle="normal"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="HUB"
+            android:textColor="#111"
+            android:textSize="21sp"
+            android:fontFamily="sans-serif"
+            android:textStyle="bold"
+            android:paddingStart="2dp"/>
+        <Space
+            android:layout_width="14dp"
+            android:layout_height="1dp"/>
+        <!-- Club's Name mềm mại -->
+        <EditText
+            android:layout_width="120dp"
+            android:layout_height="36dp"
+            android:hint="Club’s Name"
+            android:background="@drawable/bg_input_rounded"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
+            android:textColor="#222"
+            android:textColorHint="#B5C4C7"
+            android:textStyle="bold"
+            android:textSize="15sp"
+            android:fontFamily="sans-serif"
+            android:layout_marginEnd="7dp"
+            android:gravity="center_vertical"
+            android:includeFontPadding="false"/>
+        <Space
+            android:layout_width="5dp"
+            android:layout_height="1dp"/>
+        <!-- Spinner mềm mại -->
+        <Spinner
+            android:layout_width="75dp"
+            android:layout_height="36dp"
+            android:layout_marginEnd="7dp"
+            android:background="@drawable/bg_input_rounded"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            android:popupBackground="#FFFFFF" />
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1" />
+        <!-- Nút thêm bo góc, icon nét mảnh -->
+        <FrameLayout
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:background="@drawable/bg_icon_add"
+            android:clipToOutline="true">
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="6dp"
+                android:src="@drawable/ic_add"
+                android:contentDescription="Add Club"
+                android:scaleType="center"
+                android:background="@android:color/transparent"/>
+        </FrameLayout>
+    </LinearLayout>
+
+    <!-- Club list -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="#FFF">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- Club Item Demo -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#FFF"
+                android:orientation="horizontal"
+                android:paddingLeft="14dp"
+                android:paddingTop="16dp"
+                android:paddingRight="14dp"
+                android:paddingBottom="16dp">
+
+                <!-- Avatar -->
+
+                <!-- Group thông tin -->
+
+                <ImageView
+                    android:layout_width="62dp"
+                    android:layout_height="64dp"
+                    android:layout_marginEnd="14dp"
+                    android:background="@android:color/white"
+                    android:scaleType="centerCrop"
+                    android:src="@mipmap/ic_launcher" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <!-- Tên Club -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="2dp"
+                        android:fontFamily="sans-serif"
+                        android:text="Football Club"
+                        android:textColor="#111"
+                        android:textSize="22sp"
+                        android:textStyle="bold" />
+
+                    <!-- Số thành viên -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="0dp"
+                        android:fontFamily="sans-serif"
+                        android:text="120 members"
+                        android:textColor="#222"
+                        android:textSize="17sp"
+                        android:textStyle="bold" />
+
+                    <!-- Mô tả -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="12dp"
+                        android:fontFamily="sans-serif"
+                        android:text="Short description"
+                        android:textColor="#222"
+                        android:textSize="17sp"
+                        android:textStyle="bold" />
+
+                    <!-- Nút Club Details -->
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_marginTop="0dp"
+                        android:background="#FEF681"
+                        android:elevation="2dp"
+                        android:fontFamily="sans-serif"
+                        android:gravity="center"
+                        android:text="Club Details"
+                        android:textColor="#222"
+                        android:textSize="17sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+            </LinearLayout>
+
+
+            <!-- Divider -->
+            <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#222"/>
+            <!-- Lặp lại cho các club khác -->
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- Bottom Navigation -->
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_nav"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="#C3FFF2"
+        android:layout_gravity="bottom"
+        app:menu="@menu/bottom_nav_menu"/>
+</LinearLayout>
+
