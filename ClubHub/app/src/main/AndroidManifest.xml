@@ -45,6 +45,12 @@
         <activity
             android:name=".profile.EditProfileActivity"
             android:exported="true" />
+        <activity
+            android:name=".club.ClubListActivity"
+            android:exported="true" />
+        <activity
+            android:name=".club.CreateClubActivity"
+            android:exported="true" />
     </application>
 
 </manifest>
