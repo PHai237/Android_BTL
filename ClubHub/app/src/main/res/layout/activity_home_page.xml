@@ -51,8 +51,9 @@
             android:layout_width="36dp"
             android:layout_height="36dp"
             android:src="@drawable/ic_add"
+            android:contentDescription="Tạo bài đăng mới"
             android:background="@android:color/transparent"
-            android:contentDescription="Tạo bài đăng mới"/>
+            app:tint="@null" />
 
     </LinearLayout>
 
