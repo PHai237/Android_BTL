@@ -37,12 +37,6 @@
             android:layout_width="0dp"
             android:layout_height="1dp"
             android:layout_weight="1"/>
-        <ImageView
-            android:layout_width="28dp"
-            android:layout_height="28dp"
-            android:src="@drawable/ic_edit"
-            android:contentDescription="Menu"
-            app:tint="#111" />
     </LinearLayout>
 
     <ScrollView
@@ -63,16 +57,8 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:padding="18dp"
-                android:elevation="0dp"
-                android:layout_marginBottom="10dp"
-                android:layout_marginTop="4dp"
                 android:backgroundTint="#FFF"
-                android:layout_gravity="center"
                 android:background="@android:color/white"
-                android:layout_marginLeft="0dp"
-                android:layout_marginRight="0dp"
-                android:layout_marginStart="0dp"
-                android:layout_marginEnd="0dp"
                 android:clipToPadding="false">
 
                 <!-- Top group: avatar, tên, icon -->
@@ -82,8 +68,8 @@
                     android:orientation="horizontal"
                     android:gravity="center_vertical">
 
-                    <!-- Avatar -->
                     <ImageView
+                        android:id="@+id/imgClubAvatar"
                         android:layout_width="60dp"
                         android:layout_height="60dp"
                         android:src="@mipmap/ic_launcher"
@@ -99,6 +85,7 @@
                         android:layout_weight="1">
 
                         <TextView
+                            android:id="@+id/tvClubName"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Football Club"
@@ -108,6 +95,7 @@
                             android:textStyle="bold"/>
 
                         <TextView
+                            android:id="@+id/tvClubMembers"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="120 members"
@@ -119,6 +107,7 @@
                     </LinearLayout>
 
                     <ImageView
+                        android:id="@+id/imgEdit"
                         android:layout_width="28dp"
                         android:layout_height="28dp"
                         android:src="@drawable/ic_edit"
@@ -128,12 +117,12 @@
                         app:tint="#111" />
                 </LinearLayout>
 
-                <!-- Description -->
                 <TextView
+                    android:id="@+id/tvClubDesc"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
-                    android:text="Lorem ipsum dolor sit amet, id vis virtute accusamus. Sed nostro salutatus ad, et nobis persius vel, vim errem primis fuisset ex. Ea eum diceret pericula eloquentiam, ad sea"
+                    android:text="Lorem ipsum dolor sit amet, id vis virtute accusamus..."
                     android:textColor="#111"
                     android:textSize="15sp"
                     android:fontFamily="sans-serif"
@@ -157,6 +146,7 @@
                         android:fontFamily="sans-serif"/>
 
                     <ImageView
+                        android:id="@+id/imgAdminAvatar"
                         android:layout_width="32dp"
                         android:layout_height="32dp"
                         android:layout_marginLeft="10dp"
@@ -165,6 +155,7 @@
                         android:scaleType="centerCrop"/>
 
                     <TextView
+                        android:id="@+id/tvAdminName"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="7dp"
@@ -185,39 +176,13 @@
                     android:textStyle="bold"
                     android:fontFamily="sans-serif"/>
                 <LinearLayout
+                    android:id="@+id/layoutMembers"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="7dp"
                     android:orientation="horizontal"
-                    android:gravity="center_vertical">
-                    <ImageView
-                        android:layout_width="32dp"
-                        android:layout_height="32dp"
-                        android:layout_marginEnd="7dp"
-                        android:src="@mipmap/ic_launcher"
-                        android:background="@drawable/bg_circle_avatar"
-                        android:scaleType="centerCrop"/>
-                    <ImageView
-                        android:layout_width="32dp"
-                        android:layout_height="32dp"
-                        android:layout_marginEnd="7dp"
-                        android:src="@mipmap/ic_launcher"
-                        android:background="@drawable/bg_circle_avatar"
-                        android:scaleType="centerCrop"/>
-                    <ImageView
-                        android:layout_width="32dp"
-                        android:layout_height="32dp"
-                        android:layout_marginEnd="7dp"
-                        android:src="@mipmap/ic_launcher"
-                        android:background="@drawable/bg_circle_avatar"
-                        android:scaleType="centerCrop"/>
-                    <ImageView
-                        android:layout_width="32dp"
-                        android:layout_height="32dp"
-                        android:src="@mipmap/ic_launcher"
-                        android:background="@drawable/bg_circle_avatar"
-                        android:scaleType="centerCrop"/>
-                </LinearLayout>
+                    android:gravity="center_vertical"/>
+                <!-- sẽ addView ImageView vào đây -->
 
                 <!-- Upcoming Events -->
                 <TextView
@@ -249,6 +214,7 @@
                             android:background="@drawable/bg_circle_dot"
                             android:layout_marginRight="8dp"/>
                         <TextView
+                            android:id="@+id/tvEvent1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Event 1"
@@ -268,6 +234,7 @@
                             android:background="@drawable/bg_circle_dot"
                             android:layout_marginRight="8dp"/>
                         <TextView
+                            android:id="@+id/tvEvent2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Event 2"
