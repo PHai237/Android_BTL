@@ -29,7 +29,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="  Create Club"
+            android:text="  Edit Club"
             android:textColor="#111"
             android:textSize="21sp"
             android:textStyle="bold"
@@ -252,12 +252,12 @@
                     android:textSize="16sp" />
             </com.google.android.material.textfield.TextInputLayout>
 
-            <!-- Create button -->
+            <!-- Save button -->
             <Button
-                android:id="@+id/btn_create_club"
+                android:id="@+id/btn_save_club"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:text="Create"
+                android:text="Save"
                 android:textColor="#222"
                 android:textStyle="bold"
                 android:textSize="19sp"
