@@ -27,7 +27,7 @@ public class CreateClubActivity extends AppCompatActivity {
         SharedPreferences prefs = getSharedPreferences("USER_SESSION", MODE_PRIVATE);
         userId = prefs.getString("userId", null);
         if (userId == null) {
-            Toast.makeText(this, "Vui lòng đăng nhập!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Please log in!", Toast.LENGTH_SHORT).show();
             finish();
             return;
         }
@@ -60,7 +60,7 @@ public class CreateClubActivity extends AppCompatActivity {
         String type = actvType.getText().toString();
 
         if (name.isEmpty() || visibility.isEmpty() || type.isEmpty()) {
-            Toast.makeText(this, "Vui lòng điền đủ thông tin!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Please fill in all the information!", Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -77,13 +77,13 @@ public class CreateClubActivity extends AppCompatActivity {
                 .addOnSuccessListener(documentReference -> {
                     String clubId = documentReference.getId();
                     addUserRole(userId, clubId);
-                    Toast.makeText(this, "Tạo club thành công!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "Club created successfully!", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(CreateClubActivity.this, ClubDetailActivity.class);
                     intent.putExtra("clubId", clubId);
                     startActivity(intent);
                     finish();
                 })
-                .addOnFailureListener(e -> Toast.makeText(this, "Tạo club thất bại: " + e.getMessage(), Toast.LENGTH_SHORT).show());
+                .addOnFailureListener(e -> Toast.makeText(this, "Failed to create club: " + e.getMessage(), Toast.LENGTH_SHORT).show());
     }
 
     private void addUserRole(String userId, String clubId) {
