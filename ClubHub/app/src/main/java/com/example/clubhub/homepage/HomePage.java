@@ -4,16 +4,19 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import com.example.clubhub.profile.LoginActivity; // import LoginActivity ở package profile
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import com.example.clubhub.R;
+import com.example.clubhub.event.EventActivity;
+import com.example.clubhub.profile.LoginActivity; // Import LoginActivity
+import com.example.clubhub.profile.ProfileActivity; // Import ProfileActivity
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -29,6 +32,7 @@ public class HomePage extends AppCompatActivity {
     private PostAdapter postAdapter;
     private List<Post> postList;
     private FirebaseFirestore db;
+    private String email;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,32 +68,45 @@ public class HomePage extends AppCompatActivity {
                         }
                     }
                 });
+
+        // Đọc email một lần khi vào màn hình
+        SharedPreferences prefs = getSharedPreferences("USER_SESSION", MODE_PRIVATE);
+        email = prefs.getString("email", null);  // Lưu trữ email trong biến toàn cục
+
         // Thiết lập sự kiện cho BottomNavigationView
         BottomNavigationView bottomNav = findViewById(R.id.bottom_nav);
         bottomNav.setOnItemSelectedListener(item -> {
             if (item.getItemId() == R.id.nav_profile) {
-                SharedPreferences prefs = getSharedPreferences("USER_SESSION", MODE_PRIVATE);
-                String email = prefs.getString("email", null);
                 Intent intent;
                 if (email == null) {
                     // Chưa login, chuyển sang LoginActivity
                     intent = new Intent(HomePage.this, LoginActivity.class);
                 } else {
                     // Đã login, chuyển sang ProfileActivity
-                    intent = new Intent(HomePage.this, com.example.clubhub.profile.ProfileActivity.class);
+                    intent = new Intent(HomePage.this, ProfileActivity.class);
                     intent.putExtra("email", email);
                 }
                 startActivity(intent);
                 return true;
             }
-            // Xử lý tab khác ở đây nếu có
+
+            else if (item.getItemId() == R.id.nav_event) {
+                if (email == null) {
+                    // Nếu chưa đăng nhập, chuyển đến màn hình yêu cầu đăng nhập
+                    Intent intent = new Intent(HomePage.this, LoginActivity.class);
+                    startActivity(intent);
+                } else {
+                    // Người dùng đã đăng nhập, chuyển sang EventActivity
+                    startActivity(new Intent(HomePage.this, EventActivity.class));
+                }
+                return true;
+            }
+
             return false;
         });
 
+        // Logic xử lý nút tạo bài đăng
         ImageButton btnCreatePost = findViewById(R.id.btn_create_post);
-        SharedPreferences prefs = getSharedPreferences("USER_SESSION", MODE_PRIVATE);
-        String email = prefs.getString("email", null);
-
         if (email == null) {
             btnCreatePost.setVisibility(View.GONE); // Guest: ẩn nút
         } else {
@@ -100,6 +117,5 @@ public class HomePage extends AppCompatActivity {
                 startActivity(intent);
             });
         }
-
     }
 }

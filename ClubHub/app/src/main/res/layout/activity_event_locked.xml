@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="#FFF"
+    android:padding="20dp">
+
+    <ImageView
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:src="@drawable/ic_lock"
+        android:contentDescription="Lock Image" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="You need to log in to see the event"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_marginTop="20dp"
+        android:textAlignment="center"/>
+
+    <!-- Nút quay lại Homepage -->
+    <Button
+        android:id="@+id/btn_back_to_home"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:text="Go to HomePage"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="#4EFFBF"
+        android:textColor="#000"/>
+
+    <!-- Nút chuyển đến trang đăng nhập -->
+    <Button
+        android:id="@+id/btn_go_to_login"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:text="Go to Login"
+        android:layout_marginTop="10dp"
+        android:backgroundTint="#4EFFBF"
+        android:textColor="#000"/>
+</LinearLayout>
