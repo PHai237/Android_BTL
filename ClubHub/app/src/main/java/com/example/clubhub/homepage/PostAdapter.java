@@ -2,6 +2,7 @@ package com.example.clubhub.homepage;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.clubhub.R;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.List;
 
@@ -36,31 +38,38 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder
     @Override
     public void onBindViewHolder(@NonNull PostViewHolder holder, int position) {
         Post post = postList.get(position);
-        holder.tvClubName.setText(post.clubName != null ? post.clubName : "");
-        holder.tvUserName.setText(post.userName != null ? post.userName : "");
-        holder.tvContent.setText(post.content != null ? post.content : "");
 
-        // Load avatar CLB
-        if (post.clubAvatarUrl != null && !post.clubAvatarUrl.isEmpty()) {
-            Glide.with(holder.itemView.getContext())
-                    .load(post.clubAvatarUrl)
-                    .placeholder(R.drawable.ic_club_logo_default)
-                    .into(holder.imgClub);
-        } else {
-            holder.imgClub.setImageResource(R.drawable.ic_club_logo_default);
-        }
+        // Lấy clubId từ bài đăng
+        String clubId = post.clubId;
 
-        // Load avatar user
-        if (post.userAvatarUrl != null && !post.userAvatarUrl.isEmpty()) {
-            Glide.with(holder.itemView.getContext())
-                    .load(post.userAvatarUrl)
-                    .placeholder(R.drawable.ic_user_avt_default)
-                    .into(holder.imgUser);
-        } else {
-            holder.imgUser.setImageResource(R.drawable.ic_user_avt_default);
-        }
+        // Truy vấn thông tin câu lạc bộ (nếu bạn muốn hiển thị thêm thông tin câu lạc bộ)
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        db.collection("Clubs").document(clubId).get()
+                .addOnSuccessListener(documentSnapshot -> {
+                    if (documentSnapshot.exists()) {
+                        String clubName = documentSnapshot.getString("name");
+                        String clubAvatarUrl = documentSnapshot.getString("logoUrl");
 
-        // Load ảnh bài post
+                        holder.tvClubName.setText(clubName);
+                        if (clubAvatarUrl != null && !clubAvatarUrl.isEmpty()) {
+                            Glide.with(holder.itemView.getContext())
+                                    .load(clubAvatarUrl)
+                                    .placeholder(R.drawable.ic_club_logo_default)
+                                    .into(holder.imgClub);
+                        } else {
+                            holder.imgClub.setImageResource(R.drawable.ic_club_logo_default);
+                        }
+                    }
+                })
+                .addOnFailureListener(e -> {
+                    Log.w("PostAdapter", "Error getting club info: ", e);
+                });
+
+        // Load user info (user avatar, user name)
+        holder.tvUserName.setText(post.userName);
+        holder.tvContent.setText(post.content);
+
+        // Load image for post if it exists
         if (post.imageUrl != null && !post.imageUrl.isEmpty()) {
             Glide.with(holder.itemView.getContext())
                     .load(post.imageUrl)
@@ -70,7 +79,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder
             holder.imgPost.setVisibility(View.GONE);
         }
 
-        // Nhấn vào bài post để mở chi tiết và comment
+        // Handle click to open PostDetailActivity
         holder.itemView.setOnClickListener(v -> {
             Intent intent = new Intent(context, PostDetailActivity.class);
             intent.putExtra("postId", post.getPostId());
