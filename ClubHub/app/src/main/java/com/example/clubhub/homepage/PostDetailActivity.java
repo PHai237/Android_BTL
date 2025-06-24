@@ -28,6 +28,12 @@ public class PostDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_post_detail);
 
+        // Nút back
+        ImageButton btnBack = findViewById(R.id.btn_back);
+        btnBack.setOnClickListener(v -> {
+            onBackPressed();  // Quay lại màn hình trước đó
+        });
+
         tvContent = findViewById(R.id.tv_content);
         imgPost = findViewById(R.id.img_post);
         recyclerComments = findViewById(R.id.recycler_comments);
@@ -63,7 +69,7 @@ public class PostDetailActivity extends AppCompatActivity {
                     });
         } else {
             etComment.setEnabled(false);
-            etComment.setHint("Hãy đăng nhập để bình luận");
+            etComment.setHint("Please log in to comment");
             btnSendComment.setEnabled(false);
         }
 
@@ -78,7 +84,7 @@ public class PostDetailActivity extends AppCompatActivity {
         btnSendComment.setOnClickListener(v -> {
             String cmt = etComment.getText().toString().trim();
             if (cmt.isEmpty()) {
-                etComment.setError("Bạn chưa nhập nội dung!");
+                etComment.setError("Please enter content!");
                 return;
             }
             addComment(cmt);
@@ -107,7 +113,7 @@ public class PostDetailActivity extends AppCompatActivity {
 
     private void addComment(String content) {
         if (email == null) {
-            Toast.makeText(this, "Bạn cần đăng nhập để bình luận!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "You need to log in to comment!", Toast.LENGTH_SHORT).show();
             return;
         }
         String commentId = db.collection("comments").document().getId();
@@ -125,7 +131,7 @@ public class PostDetailActivity extends AppCompatActivity {
                     etComment.setText("");
                 })
                 .addOnFailureListener(e -> {
-                    Toast.makeText(this, "Lỗi khi gửi comment: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "Error sending comment: " + e.getMessage(), Toast.LENGTH_SHORT).show();
                 });
     }
 }
