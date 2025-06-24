@@ -125,7 +125,7 @@ public class PostDetailActivity extends AppCompatActivity {
                     etComment.setText("");
                 })
                 .addOnFailureListener(e -> {
-                    Toast.makeText(this, "Lỗi khi gửi comment: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
                 });
     }
 }
