@@ -22,7 +22,7 @@ public class ClubDetailAdminActivity extends AppCompatActivity {
 
         String clubId = getIntent().getStringExtra("clubId");
         if (clubId == null) {
-            Toast.makeText(this, "Lỗi: Không tìm thấy club", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Error: Club not found", Toast.LENGTH_SHORT).show();
             finish();
             return;
         }
@@ -32,7 +32,7 @@ public class ClubDetailAdminActivity extends AppCompatActivity {
 
         docRef.get().addOnSuccessListener(doc -> {
             if (!doc.exists()) {
-                Toast.makeText(this, "Club không tồn tại!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Club does not exist!", Toast.LENGTH_SHORT).show();
                 finish();
                 return;
             }
@@ -53,7 +53,7 @@ public class ClubDetailAdminActivity extends AppCompatActivity {
                     String adminName = adminDoc.getString("fullName");
                     ((TextView) findViewById(R.id.tvAdminName)).setText(adminName != null ? adminName : "Admin Name");
                 }).addOnFailureListener(e -> {
-                    Toast.makeText(this, "Không thể lấy tên admin", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "Unable to get admin name", Toast.LENGTH_SHORT).show();
                 });
             }
 
@@ -81,7 +81,7 @@ public class ClubDetailAdminActivity extends AppCompatActivity {
             ((TextView) findViewById(R.id.tvEvent2)).setText("Event 2");
 
         }).addOnFailureListener(e -> {
-            Toast.makeText(this, "Không load được chi tiết club!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Unable to load club details!", Toast.LENGTH_SHORT).show();
             finish();
         });
     }
@@ -124,11 +124,11 @@ public class ClubDetailAdminActivity extends AppCompatActivity {
         // Xóa câu lạc bộ khỏi Firestore
         clubRef.delete()
                 .addOnSuccessListener(aVoid -> {
-                    Toast.makeText(ClubDetailAdminActivity.this, "Xóa câu lạc bộ thành công!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "Deleted club successfully!", Toast.LENGTH_SHORT).show();
                     finish(); // Quay lại màn hình trước
                 })
                 .addOnFailureListener(e -> {
-                    Toast.makeText(ClubDetailAdminActivity.this, "Không thể xóa câu lạc bộ!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "Unable to delete club!", Toast.LENGTH_SHORT).show();
                 });
     }
 

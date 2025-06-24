@@ -4,24 +4,22 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.clubhub.R;
+import com.example.clubhub.club.ClubListActivity; // Thêm import cho ClubListActivity
 import com.example.clubhub.event.EventActivity;
-import com.example.clubhub.profile.LoginActivity; // Import LoginActivity
-import com.example.clubhub.profile.ProfileActivity; // Import ProfileActivity
+import com.example.clubhub.profile.LoginActivity;
+import com.example.clubhub.profile.ProfileActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -99,6 +97,13 @@ public class HomePage extends AppCompatActivity {
                     // Người dùng đã đăng nhập, chuyển sang EventActivity
                     startActivity(new Intent(HomePage.this, EventActivity.class));
                 }
+                return true;
+            }
+
+            else if (item.getItemId() == R.id.nav_club) {
+                // Điều hướng đến ClubListActivity
+                Intent intent = new Intent(HomePage.this, ClubListActivity.class);
+                startActivity(intent);
                 return true;
             }
 

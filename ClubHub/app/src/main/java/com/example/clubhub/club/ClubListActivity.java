@@ -10,7 +10,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.clubhub.R;
+import com.example.clubhub.event.EventActivity;  // Import EventActivity
 import com.example.clubhub.profile.LoginActivity;
+import com.example.clubhub.profile.ProfileActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -35,23 +37,27 @@ public class ClubListActivity extends AppCompatActivity {
 
         // Setup BottomNavigationView
         BottomNavigationView bottomNav = findViewById(R.id.bottom_nav);
-        bottomNav.setSelectedItemId(R.id.nav_club);
+        bottomNav.setSelectedItemId(R.id.nav_club);  // Ensure the selected item is "Club"
         bottomNav.setOnItemSelectedListener(item -> {
             int itemId = item.getItemId();
-            if (itemId == R.id.nav_club) return true;
-            if (itemId == R.id.nav_post) {
-                Intent intent = new Intent(this, com.example.clubhub.homepage.HomePage.class);
+            if (itemId == R.id.nav_club) {
+                return true;  // Club is already selected
+            }
+            if (itemId == R.id.nav_event) {
+                // Khi chọn "Event", chuyển sang EventActivity
+                Intent intent = new Intent(ClubListActivity.this, EventActivity.class);
                 startActivity(intent);
-                finish();
+
+                finish();  // Đảm bảo chuyển sang màn hình mới
                 return true;
             }
             if (itemId == R.id.nav_profile) {
                 String emailPref = prefs.getString("email", null);
                 Intent intent;
                 if (emailPref == null) {
-                    intent = new Intent(this, com.example.clubhub.profile.LoginActivity.class);
+                    intent = new Intent(this, LoginActivity.class);
                 } else {
-                    intent = new Intent(this, com.example.clubhub.profile.ProfileActivity.class);
+                    intent = new Intent(this, ProfileActivity.class);
                     intent.putExtra("email", emailPref);
                 }
                 startActivity(intent);
@@ -60,6 +66,7 @@ public class ClubListActivity extends AppCompatActivity {
             }
             return false;
         });
+
     }
 
     @Override
@@ -114,7 +121,7 @@ public class ClubListActivity extends AppCompatActivity {
 
                     clubAdapter = new ClubAdapter(items, club -> {
                         if (userId == null) {
-                            Toast.makeText(ClubListActivity.this, "Bạn cần đăng nhập để xem chi tiết câu lạc bộ", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(this, "You need to log in to view club details", Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(ClubListActivity.this, LoginActivity.class);
                             startActivity(intent);
                         } else {
@@ -123,7 +130,7 @@ public class ClubListActivity extends AppCompatActivity {
                     });
                     rvClubs.setAdapter(clubAdapter);
                 })
-                .addOnFailureListener(e -> Toast.makeText(this, "Không tải được danh sách club", Toast.LENGTH_SHORT).show());
+                .addOnFailureListener(e -> Toast.makeText(this, "Unable to load club list", Toast.LENGTH_SHORT).show());
     }
 
     private boolean checkIfUserJoinedClub(String clubId) {
@@ -150,6 +157,6 @@ public class ClubListActivity extends AppCompatActivity {
                         startActivity(intent);
                     }
                 })
-                .addOnFailureListener(e -> Toast.makeText(ClubListActivity.this, "Không thể kiểm tra quyền truy cập", Toast.LENGTH_SHORT).show());
+                .addOnFailureListener(e -> Toast.makeText(ClubListActivity.this, "Unable to check access rights", Toast.LENGTH_SHORT).show());
     }
 }

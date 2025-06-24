@@ -26,7 +26,7 @@ public class ClubDetailMemberActivity extends AppCompatActivity {
 
         clubId = getIntent().getStringExtra("clubId");
         if (clubId == null) {
-            Toast.makeText(this, "Lỗi: Không tìm thấy câu lạc bộ", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Error: Club not found", Toast.LENGTH_SHORT).show();
             finish();
             return;
         }
@@ -92,7 +92,7 @@ public class ClubDetailMemberActivity extends AppCompatActivity {
                 finish();
             }
         }).addOnFailureListener(e -> {
-            Toast.makeText(this, "Không thể tải thông tin câu lạc bộ", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Unable to load club information", Toast.LENGTH_SHORT).show();
             finish();
         });
 
@@ -133,7 +133,7 @@ public class ClubDetailMemberActivity extends AppCompatActivity {
             // Tham gia câu lạc bộ
             btnJoinClub.setText("Out Club");
             btnJoinClub.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.button_out_color))); // Màu xám
-            Toast.makeText(this, "Đã tham gia câu lạc bộ", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Already joined the club", Toast.LENGTH_SHORT).show();
 
             // Lưu trạng thái tham gia câu lạc bộ vào SharedPreferences
             prefs.edit().putBoolean("isJoined_" + clubId, true).apply();
@@ -142,7 +142,7 @@ public class ClubDetailMemberActivity extends AppCompatActivity {
             // Rời khỏi câu lạc bộ
             btnJoinClub.setText("Join Club");
             btnJoinClub.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.button_join_color))); // Màu xanh
-            Toast.makeText(this, "Đã rời khỏi câu lạc bộ", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Left the club", Toast.LENGTH_SHORT).show();
 
             // Lưu trạng thái tham gia câu lạc bộ vào SharedPreferences
             prefs.edit().putBoolean("isJoined_" + clubId, false).apply();
