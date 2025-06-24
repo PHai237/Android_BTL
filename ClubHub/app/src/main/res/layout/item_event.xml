@@ -1,0 +1,62 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="12dp"
+    android:layout_marginBottom="16dp"
+    android:background="@android:color/white"
+    android:orientation="vertical"
+    android:elevation="2dp">
+
+    <!-- Image for event -->
+    <ImageView
+        android:id="@+id/img_event"
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:layout_marginBottom="12dp"
+        android:scaleType="centerCrop"
+        android:background="@android:color/darker_gray" />
+
+    <!-- Event details (name, date, time, location) -->
+    <TextView
+        android:id="@+id/tv_event_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Event Name"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="6dp"/>
+
+    <TextView
+        android:id="@+id/tv_event_date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Event Date"
+        android:textSize="14sp"
+        android:layout_marginBottom="6dp"/>
+
+    <TextView
+        android:id="@+id/tv_event_time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Event Time"
+        android:textSize="14sp"
+        android:layout_marginBottom="6dp"/>
+
+    <TextView
+        android:id="@+id/tv_event_place"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Event Place"
+        android:textSize="14sp"
+        android:layout_marginBottom="12dp"/>
+
+    <!-- Button to see event details -->
+    <Button
+        android:id="@+id/btn_event_details"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:text="Event Details"
+        android:layout_marginTop="12dp"
+        android:backgroundTint="#4EFFBF"
+        android:textColor="#000"/>
+</LinearLayout>

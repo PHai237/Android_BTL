@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
@@ -31,34 +32,13 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Create New Post"
+                android:text="Create New Event"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 android:layout_marginStart="10dp"/>
         </LinearLayout>
 
-        <!-- Spinner to select club for post -->
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="14dp"
-            app:boxBackgroundMode="outline"
-            app:boxCornerRadiusTopStart="14dp"
-            app:boxCornerRadiusTopEnd="14dp"
-            app:boxCornerRadiusBottomStart="14dp"
-            app:boxCornerRadiusBottomEnd="14dp"
-            app:boxStrokeColor="#4EFFBF"
-            app:boxStrokeWidth="1dp"
-            app:boxStrokeWidthFocused="2dp">
-
-            <Spinner
-                android:id="@+id/spinner_club"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:background="@android:color/transparent"/>
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <!-- Post content -->
+        <!-- Event Name -->
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -73,16 +53,108 @@
             android:layout_marginBottom="12dp">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/et_content"
+                android:id="@+id/et_event_name"
                 android:layout_width="match_parent"
-                android:layout_height="120dp"
-                android:gravity="top"
-                android:hint="What would you like to share?"
+                android:layout_height="48dp"
+                android:hint="Event Name"
                 android:textSize="16sp"
                 android:padding="12dp"/>
         </com.google.android.material.textfield.TextInputLayout>
 
-        <!-- Link input + find image button -->
+        <!-- Event Date -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:boxBackgroundMode="outline"
+            app:boxCornerRadiusTopStart="14dp"
+            app:boxCornerRadiusTopEnd="14dp"
+            app:boxCornerRadiusBottomStart="14dp"
+            app:boxCornerRadiusBottomEnd="14dp"
+            app:boxStrokeColor="#4EFFBF"
+            app:boxStrokeWidth="1dp"
+            app:boxStrokeWidthFocused="2dp"
+            android:layout_marginBottom="12dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_event_date"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:hint="Event Date"
+                android:textSize="16sp"
+                android:padding="12dp"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Event Time -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:boxBackgroundMode="outline"
+            app:boxCornerRadiusTopStart="14dp"
+            app:boxCornerRadiusTopEnd="14dp"
+            app:boxCornerRadiusBottomStart="14dp"
+            app:boxCornerRadiusBottomEnd="14dp"
+            app:boxStrokeColor="#4EFFBF"
+            app:boxStrokeWidth="1dp"
+            app:boxStrokeWidthFocused="2dp"
+            android:layout_marginBottom="12dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_event_time"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:hint="Event Time"
+                android:textSize="16sp"
+                android:padding="12dp"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Event Place -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:boxBackgroundMode="outline"
+            app:boxCornerRadiusTopStart="14dp"
+            app:boxCornerRadiusTopEnd="14dp"
+            app:boxCornerRadiusBottomStart="14dp"
+            app:boxCornerRadiusBottomEnd="14dp"
+            app:boxStrokeColor="#4EFFBF"
+            app:boxStrokeWidth="1dp"
+            app:boxStrokeWidthFocused="2dp"
+            android:layout_marginBottom="12dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_event_place"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:hint="Event Place"
+                android:textSize="16sp"
+                android:padding="12dp"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Event Description -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:boxBackgroundMode="outline"
+            app:boxCornerRadiusTopStart="14dp"
+            app:boxCornerRadiusTopEnd="14dp"
+            app:boxCornerRadiusBottomStart="14dp"
+            app:boxCornerRadiusBottomEnd="14dp"
+            app:boxStrokeColor="#4EFFBF"
+            app:boxStrokeWidth="1dp"
+            app:boxStrokeWidthFocused="2dp"
+            android:layout_marginBottom="12dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_event_description"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:gravity="top"
+                android:hint="Event Description"
+                android:textSize="16sp"
+                android:padding="12dp"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Link input + Find image button -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -107,7 +179,7 @@
                     android:id="@+id/et_image_url"
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
-                    android:hint="Paste image link (optional)"
+                    android:hint="Image URL (Optional)"
                     android:textSize="15sp"
                     android:padding="10dp"/>
             </com.google.android.material.textfield.TextInputLayout>
@@ -121,15 +193,7 @@
                 android:layout_marginStart="10dp"/>
         </LinearLayout>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Paste image link from Unsplash, Pexels, Imgur, or Google Drive (public)..."
-            android:textSize="13sp"
-            android:textColor="#888"
-            android:layout_marginTop="6dp"
-            android:layout_marginBottom="6dp"/>
-
+        <!-- Preview image -->
         <ImageView
             android:id="@+id/img_preview"
             android:layout_width="match_parent"
@@ -139,11 +203,12 @@
             android:scaleType="centerCrop"
             android:visibility="gone" />
 
+        <!-- Submit Event button -->
         <Button
-            android:id="@+id/btn_post"
+            android:id="@+id/btn_create_event"
             android:layout_width="match_parent"
             android:layout_height="48dp"
-            android:text="Post"
+            android:text="Create Event"
             android:textStyle="bold"
             android:textSize="17sp"
             android:backgroundTint="#4EFFBF"
