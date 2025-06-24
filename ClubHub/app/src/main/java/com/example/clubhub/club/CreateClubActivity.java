@@ -7,9 +7,8 @@ import android.widget.*;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.clubhub.R;
-import com.google.android.material.textfield.TextInputEditText;
-import com.google.android.material.textfield.MaterialAutoCompleteTextView;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.android.material.textfield.TextInputEditText;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -25,10 +24,8 @@ public class CreateClubActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_club);
 
-        // Lấy userId từ SharedPreferences
         SharedPreferences prefs = getSharedPreferences("USER_SESSION", MODE_PRIVATE);
         userId = prefs.getString("userId", null);
-
         if (userId == null) {
             Toast.makeText(this, "Vui lòng đăng nhập!", Toast.LENGTH_SHORT).show();
             finish();
@@ -42,27 +39,17 @@ public class CreateClubActivity extends AppCompatActivity {
         btnCreate = findViewById(R.id.btn_create_club);
         btnBack = findViewById(R.id.btn_back);
 
-        // Adapter cho Visibility (dropdown)
-// Adapter cho Visibility (dropdown)
         String[] visibilities = {"Public", "Private"};
-        ArrayAdapter<String> visAdapter = new ArrayAdapter<>(
-                this, android.R.layout.simple_list_item_1, visibilities
-        );
+        ArrayAdapter<String> visAdapter = new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line, visibilities);
         actvVisibility.setAdapter(visAdapter);
         actvVisibility.setOnClickListener(v -> actvVisibility.showDropDown());
 
-// Adapter cho Type (dropdown)
         String[] types = {"Football", "IT"};
-        ArrayAdapter<String> typeAdapter = new ArrayAdapter<>(
-                this, android.R.layout.simple_list_item_1, types
-        );
+        ArrayAdapter<String> typeAdapter = new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line, types);
         actvType.setAdapter(typeAdapter);
         actvType.setOnClickListener(v -> actvType.showDropDown());
 
-
-        // Bấm back
         btnBack.setOnClickListener(v -> onBackPressed());
-
         btnCreate.setOnClickListener(v -> createClub());
     }
 
@@ -90,7 +77,6 @@ public class CreateClubActivity extends AppCompatActivity {
                 .addOnSuccessListener(documentReference -> {
                     String clubId = documentReference.getId();
                     addUserRole(userId, clubId);
-
                     Toast.makeText(this, "Tạo club thành công!", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(CreateClubActivity.this, ClubDetailActivity.class);
                     intent.putExtra("clubId", clubId);

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingLeft="14dp"
+    android:paddingTop="16dp"
+    android:paddingRight="14dp"
+    android:paddingBottom="16dp"
+    android:background="#FFF">
+
+    <ImageView
+        android:layout_width="62dp"
+        android:layout_height="64dp"
+        android:layout_marginEnd="14dp"
+        android:background="@android:color/white"
+        android:scaleType="centerCrop"
+        android:src="@mipmap/ic_launcher" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvClubName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
+            android:text="Football Club"
+            android:textColor="#111"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvClubType"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
+            android:text="Type"
+            android:textColor="#444"
+            android:textSize="15sp"
+            android:layout_marginTop="2dp"/>
+
+        <TextView
+            android:id="@+id/tvClubDesc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
+            android:text="Short description"
+            android:textColor="#666"
+            android:textSize="14sp"
+            android:layout_marginTop="2dp"/>
+
+        <TextView
+            android:id="@+id/tvClubVisibility"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
+            android:text="Public"
+            android:textColor="#198754"
+            android:textSize="13sp"
+            android:layout_marginTop="2dp"/>
+
+        <TextView
+            android:id="@+id/btnClubDetails"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="#FEF681"
+            android:elevation="2dp"
+            android:fontFamily="sans-serif"
+            android:gravity="center"
+            android:text="Club Details"
+            android:textColor="#222"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_marginTop="10dp"/>
+    </LinearLayout>
+</LinearLayout>
