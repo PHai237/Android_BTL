@@ -24,7 +24,7 @@
             android:id="@+id/tv_comment_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Tên user"
+            android:text="User Name"
             android:textStyle="bold"
             android:textSize="14sp"/>
 
@@ -32,7 +32,7 @@
             android:id="@+id/tv_comment_content"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Nội dung bình luận"
+            android:text="Comment Content"
             android:textSize="14sp"
             android:textColor="#222"/>
 

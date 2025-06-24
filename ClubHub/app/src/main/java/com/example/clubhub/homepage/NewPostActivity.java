@@ -22,7 +22,7 @@ public class NewPostActivity extends AppCompatActivity {
     private Button btnFindImage, btnPost;
     private String email;
 
-    // Lưu tạm thông tin các CLB user tham gia
+    // Temporarily store the clubs the user is a member of
     private List<Club> clubList = new ArrayList<>();
 
     @Override
@@ -37,13 +37,13 @@ public class NewPostActivity extends AppCompatActivity {
         btnFindImage = findViewById(R.id.btn_find_image);
         btnPost = findViewById(R.id.btn_post);
 
-        // Nút back
+        // Back button
         ImageButton btnBack = findViewById(R.id.btn_back);
         btnBack.setOnClickListener(v -> finish());
 
         email = getIntent().getStringExtra("email");
 
-        // Preview ảnh khi dán link
+        // Preview image when the link is pasted
         etImageUrl.addTextChangedListener(new TextWatcher() {
             @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
             @Override public void onTextChanged(CharSequence s, int start, int before, int count) {
@@ -63,24 +63,24 @@ public class NewPostActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-        // Kiểm tra người dùng đã tham gia câu lạc bộ chưa
+        // Check if the user has joined any clubs
         checkMembershipAndAllowPost();
 
-        // Lấy danh sách CLB user đã tham gia từ Firestore
+        // Load the list of clubs the user has joined from Firestore
         loadUserClubs();
 
         btnPost.setOnClickListener(v -> {
             String content = etContent.getText().toString().trim();
             String imageUrl = etImageUrl.getText().toString().trim();
 
-            // Nếu chưa có CLB: Hiện popup, không đăng
+            // If no club is selected: Show popup and don't post
             if (clubList.isEmpty()) {
                 new AlertDialog.Builder(this)
-                        .setTitle("Bạn chưa tham gia CLB nào")
-                        .setMessage("Bạn cần tham gia ít nhất một câu lạc bộ để đăng bài!")
+                        .setTitle("You have not joined any clubs")
+                        .setMessage("You need to join at least one club to post!")
                         .setPositiveButton("OK", null)
-                        .setNegativeButton("Khám phá CLB", (dialog, which) -> {
-                            // TODO: Mở màn hình khám phá CLB nếu muốn
+                        .setNegativeButton("Explore Clubs", (dialog, which) -> {
+                            // TODO: Open club exploration screen if needed
                             // startActivity(new Intent(this, ExploreClubActivity.class));
                         })
                         .show();
@@ -88,54 +88,55 @@ public class NewPostActivity extends AppCompatActivity {
             }
 
             if (content.isEmpty()) {
-                etContent.setError("Vui lòng nhập nội dung");
+                etContent.setError("Please enter content");
                 return;
             }
 
             int selectedIdx = spinnerClub.getSelectedItemPosition();
             if (selectedIdx < 0) {
-                Toast.makeText(this, "Bạn cần chọn câu lạc bộ để đăng bài!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "You need to select a club to post!", Toast.LENGTH_SHORT).show();
                 return;
             }
 
             Club selectedClub = clubList.get(selectedIdx);
             uploadPost(content, imageUrl, selectedClub);
         });
+
     }
 
     private void checkMembershipAndAllowPost() {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-        // Truy vấn bảng ClubMembers sử dụng email làm userId
+        // Query ClubMembers collection using email as userId
         db.collection("ClubMembers")
-                .whereEqualTo("email", email)  // Sử dụng email để tìm kiếm thay vì userId
+                .whereEqualTo("email", email)  // Use email to search instead of userId
                 .get()
                 .addOnSuccessListener(queryDocumentSnapshots -> {
                     if (queryDocumentSnapshots.isEmpty()) {
-                        // Nếu không tìm thấy dữ liệu, người dùng chưa tham gia câu lạc bộ
+                        // If no data found, the user has not joined any club
                         enablePostButton(false);
-                        showErrorMessage("Bạn chưa tham gia câu lạc bộ này.");
+                        showErrorMessage("You have not joined any clubs.");
                     } else {
-                        // Người dùng đã tham gia ít nhất một câu lạc bộ
+                        // The user has joined at least one club
                         enablePostButton(true);
                     }
                 })
                 .addOnFailureListener(e -> {
-                    showErrorMessage("Có lỗi xảy ra khi kiểm tra câu lạc bộ.");
+                    showErrorMessage("Error occurred while checking clubs.");
                     enablePostButton(false);
                 });
     }
 
-    // Hiển thị thông báo lỗi
+    // Show error message
     private void showErrorMessage(String message) {
         new AlertDialog.Builder(this)
-                .setTitle("Lỗi")
+                .setTitle("Error")
                 .setMessage(message)
                 .setPositiveButton("OK", null)
                 .show();
     }
 
-    // Kích hoạt hoặc vô hiệu hóa nút đăng bài
+    // Enable or disable the post button
     private void enablePostButton(boolean enable) {
         btnPost.setEnabled(enable);
     }
@@ -147,32 +148,41 @@ public class NewPostActivity extends AppCompatActivity {
                 .whereEqualTo("email", email)
                 .get()
                 .addOnSuccessListener(queryDocumentSnapshots -> {
-                    clubList.clear();
+                    clubList.clear();  // Clear list to ensure we load fresh data
                     for (QueryDocumentSnapshot doc : queryDocumentSnapshots) {
                         String clubId = doc.getString("clubId");
-                        // Truy vấn thêm thông tin câu lạc bộ từ bảng Clubs
+                        // Query additional club info from Clubs collection
                         db.collection("Clubs").document(clubId)
                                 .get()
                                 .addOnSuccessListener(clubDoc -> {
-                                    String clubName = clubDoc.getString("name");  // Lấy tên câu lạc bộ từ Firestore
-                                    clubList.add(new Club(clubId, clubName));  // Thêm vào danh sách
+                                    String clubName = clubDoc.getString("name");  // Get club name from Firestore
+                                    clubList.add(new Club(clubId, clubName));  // Add to the list
+
+                                    // After all clubs are loaded, set the spinner
+                                    if (clubList.size() > 0) {
+                                        ArrayAdapter<Club> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, clubList);
+                                        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                                        spinnerClub.setAdapter(adapter);
+                                        enablePostButton(true);  // Enable the post button now that we have data
+                                    }
                                 })
                                 .addOnFailureListener(e -> {
-                                    showErrorMessage("Lỗi khi tải câu lạc bộ");
+                                    showErrorMessage("Error loading club data");
                                 });
                     }
 
-                    // Sau khi đã tải tất cả câu lạc bộ, thiết lập spinner
-                    ArrayAdapter<Club> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, clubList);
-                    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                    spinnerClub.setAdapter(adapter);
+                    // After all clubs are loaded, set the spinner
+                    if (clubList.isEmpty()) {
+                        enablePostButton(false);  // Disable post button if no clubs found
+                    }
                 })
                 .addOnFailureListener(e -> {
-                    showErrorMessage("Lỗi khi tải câu lạc bộ");
+                    showErrorMessage("Error loading clubs");
+                    enablePostButton(false);  // Disable post button on failure
                 });
     }
 
-    // Upload bài viết
+    // Upload post
     private void uploadPost(String content, String imageUrl, Club club) {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         String postId = db.collection("posts").document().getId();
@@ -188,15 +198,15 @@ public class NewPostActivity extends AppCompatActivity {
 
         db.collection("posts").document(postId).set(post)
                 .addOnSuccessListener(aVoid -> {
-                    Toast.makeText(this, "Đăng bài thành công!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "Post successful!", Toast.LENGTH_SHORT).show();
                     finish();
                 })
                 .addOnFailureListener(e -> {
-                    Toast.makeText(this, "Lỗi đăng bài: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "Post error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
                 });
     }
 
-    // Class đại diện cho Club
+    // Club class
     private static class Club {
         String clubId, clubName;
         Club(String id, String name) {
