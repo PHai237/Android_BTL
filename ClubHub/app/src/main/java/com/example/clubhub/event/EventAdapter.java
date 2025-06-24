@@ -56,9 +56,9 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHol
 
         // Xử lý sự kiện click vào nút "Details"
         holder.btnEventDetails.setOnClickListener(v -> {
-            // Chuyển tới EventDetailActivity với eventId
+            // Chuyển tới EventDetailActivity với đối tượng Event
             Intent intent = new Intent(context, EventDetailActivity.class);
-            intent.putExtra("eventId", event.getEventId());  // Truyền eventId để hiển thị chi tiết sự kiện
+            intent.putExtra("eventDetails", event);  // Truyền toàn bộ đối tượng Event
             context.startActivity(intent);
         });
     }

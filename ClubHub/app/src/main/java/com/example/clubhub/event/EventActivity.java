@@ -76,7 +76,7 @@ public class EventActivity extends AppCompatActivity {
         if (userEmail != null) {
             // Kiểm tra vai trò chủ sở hữu club trong Firestore
             db.collection("clubs")
-                    .whereEqualTo("owner", userEmail)  // Kiểm tra nếu người dùng là chủ sở hữu của bất kỳ club nào
+                    .whereEqualTo("createdById", userEmail)  // So sánh với createdById thay vì owner
                     .get()
                     .addOnCompleteListener(task -> {
                         if (task.isSuccessful() && !task.getResult().isEmpty()) {
@@ -87,6 +87,7 @@ public class EventActivity extends AppCompatActivity {
                             btnAddEvent.setVisibility(View.GONE);
                         }
                     });
+
         }
     }
 }

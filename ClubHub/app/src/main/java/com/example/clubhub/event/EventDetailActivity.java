@@ -3,6 +3,7 @@ package com.example.clubhub.event;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -32,24 +33,41 @@ public class EventDetailActivity extends AppCompatActivity {
         tvEventDescription = findViewById(R.id.tv_event_description);
         btnRegister = findViewById(R.id.btn_register);
 
-        // Receive event data from the Intent
+        // Nhận dữ liệu event từ Intent
         Intent intent = getIntent();
         Event event = (Event) intent.getSerializableExtra("eventDetails");
 
-        // Set data into views
-        tvEventName.setText(event.getEventName());
-        tvEventDateTime.setText(event.getEventDate() + " | " + event.getEventTime());
-        tvEventPlace.setText(event.getEventPlace());
-        tvRegisteredUsers.setText(event.getRegisteredUsers() + " of " + event.getTotalUsers() + " registered");
-        tvClubName.setText(event.getClubName());
-        tvEventDescription.setText(event.getEventDescription());
+        // Kiểm tra nếu event không phải là null
+        if (event != null) {
+            // Cập nhật dữ liệu vào các view
+            tvEventName.setText(event.getEventName());
+            tvEventDateTime.setText(event.getEventDate() + " | " + event.getEventTime());
+            tvEventPlace.setText(event.getEventPlace());
+            tvRegisteredUsers.setText(event.getRegisteredUsers() + " of " + event.getTotalUsers() + " registered");
+            tvClubName.setText(event.getClubName());
+            tvEventDescription.setText(event.getEventDescription());
 
-        // Load image
-        Glide.with(this).load(event.getEventImageUrl()).into(imgEventDetail);
+            // Tải ảnh
+            if (event.getEventImageUrl() != null && !event.getEventImageUrl().isEmpty()) {
+                Glide.with(this).load(event.getEventImageUrl()).into(imgEventDetail);
+            } else {
+                imgEventDetail.setImageResource(R.drawable.sample_img_default); // Default image
+            }
 
-        // Set Register Button click listener
-        btnRegister.setOnClickListener(v -> {
-            // Handle registration logic here
+            // Xử lý nút đăng ký
+            btnRegister.setOnClickListener(v -> {
+                // Logic đăng ký sự kiện
+            });
+        } else {
+            // Nếu không có dữ liệu event, có thể hiển thị thông báo lỗi hoặc chuyển hướng
+            tvEventName.setText("Error: Event details not available");
+        }
+
+        // Xử lý nút back
+        ImageButton btnBack = findViewById(R.id.btn_back);
+        btnBack.setOnClickListener(v -> {
+            onBackPressed();  // Quay lại màn hình trước
         });
+
     }
 }

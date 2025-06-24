@@ -101,15 +101,35 @@ public class Event implements Serializable {
         return registeredUsers;
     }
 
-    public void setRegisteredUsers(int registeredUsers) {
-        this.registeredUsers = registeredUsers;
+    public void setRegisteredUsers(Object registeredUsers) {
+        if (registeredUsers instanceof String) {
+            try {
+                this.registeredUsers = Integer.parseInt((String) registeredUsers);  // Chuyển từ String sang int
+            } catch (NumberFormatException e) {
+                this.registeredUsers = 0;  // Giá trị mặc định nếu không thể chuyển đổi
+            }
+        } else if (registeredUsers instanceof Number) {
+            this.registeredUsers = ((Number) registeredUsers).intValue();  // Nếu là Number thì gán trực tiếp
+        } else {
+            this.registeredUsers = 0;  // Giá trị mặc định khi kiểu dữ liệu không hợp lệ
+        }
     }
 
     public int getTotalUsers() {
         return totalUsers;
     }
 
-    public void setTotalUsers(int totalUsers) {
-        this.totalUsers = totalUsers;
+    public void setTotalUsers(Object totalUsers) {
+        if (totalUsers instanceof String) {
+            try {
+                this.totalUsers = Integer.parseInt((String) totalUsers);  // Chuyển từ String sang int
+            } catch (NumberFormatException e) {
+                this.totalUsers = 0;  // Giá trị mặc định nếu không thể chuyển đổi
+            }
+        } else if (totalUsers instanceof Number) {
+            this.totalUsers = ((Number) totalUsers).intValue();  // Nếu là Number thì gán trực tiếp
+        } else {
+            this.totalUsers = 0;  // Giá trị mặc định khi kiểu dữ liệu không hợp lệ
+        }
     }
 }
