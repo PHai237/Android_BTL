@@ -13,6 +13,7 @@ public class ClubAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     public interface OnClubClickListener {
         void onClubClick(Club club);
     }
+
     private List<ClubListItem> items;
     private OnClubClickListener listener;
 
@@ -61,6 +62,7 @@ public class ClubAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     public static class HeaderViewHolder extends RecyclerView.ViewHolder {
         TextView tvHeader;
+
         public HeaderViewHolder(@NonNull View itemView) {
             super(itemView);
             tvHeader = itemView.findViewById(R.id.tvHeader);
@@ -69,6 +71,7 @@ public class ClubAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     public static class ClubViewHolder extends RecyclerView.ViewHolder {
         TextView tvName, tvType, tvDesc, tvVisibility, btnDetails;
+
         public ClubViewHolder(@NonNull View itemView) {
             super(itemView);
             tvName = itemView.findViewById(R.id.tvClubName);
