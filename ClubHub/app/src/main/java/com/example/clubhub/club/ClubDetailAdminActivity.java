@@ -13,7 +13,7 @@ import com.example.clubhub.R;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-public class ClubDetailActivity extends AppCompatActivity {
+public class ClubDetailAdminActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -97,7 +97,7 @@ public class ClubDetailActivity extends AppCompatActivity {
             int itemId = item.getItemId();  // Lấy ID của item đã chọn
             if (itemId == R.id.menu_edit) {
                 // Chuyển đến màn hình chỉnh sửa câu lạc bộ
-                Intent intent = new Intent(ClubDetailActivity.this, EditClubActivity.class);
+                Intent intent = new Intent(ClubDetailAdminActivity.this, EditClubActivity.class); // Cập nhật từ ClubDetailActivity.this -> ClubDetailAdminActivity.this
                 intent.putExtra("clubId", clubId);
                 intent.putExtra("clubName", clubName);
                 intent.putExtra("clubDesc", clubDesc);
@@ -114,7 +114,9 @@ public class ClubDetailActivity extends AppCompatActivity {
         popupMenu.show();
     }
 
+
     // Hàm để xóa câu lạc bộ
+// Hàm để xóa câu lạc bộ
     private void deleteClub(String clubId) {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         DocumentReference clubRef = db.collection("Clubs").document(clubId);
@@ -122,11 +124,12 @@ public class ClubDetailActivity extends AppCompatActivity {
         // Xóa câu lạc bộ khỏi Firestore
         clubRef.delete()
                 .addOnSuccessListener(aVoid -> {
-                    Toast.makeText(ClubDetailActivity.this, "Xóa câu lạc bộ thành công!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ClubDetailAdminActivity.this, "Xóa câu lạc bộ thành công!", Toast.LENGTH_SHORT).show();
                     finish(); // Quay lại màn hình trước
                 })
                 .addOnFailureListener(e -> {
-                    Toast.makeText(ClubDetailActivity.this, "Không thể xóa câu lạc bộ!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ClubDetailAdminActivity.this, "Không thể xóa câu lạc bộ!", Toast.LENGTH_SHORT).show();
                 });
     }
+
 }

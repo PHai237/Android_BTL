@@ -2,4 +2,6 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="button_join_color">#FEF681</color> <!-- Xanh lá cây cho "Join Club" -->
+    <color name="button_out_color">#A9A9A9</color> <!-- Màu xám cho "Out Club" -->
 </resources>

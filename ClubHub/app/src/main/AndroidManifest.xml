@@ -58,6 +58,12 @@
             android:name=".club.ClubDetailActivity"
             android:exported="true" />
         <activity
+            android:name=".club.ClubDetailAdminActivity"
+            android:exported="true" />
+        <activity
+            android:name=".club.ClubDetailMemberActivity"
+            android:exported="true" />
+        <activity
             android:name=".club.EditClubActivity"
             android:exported="true" />
     </application>
