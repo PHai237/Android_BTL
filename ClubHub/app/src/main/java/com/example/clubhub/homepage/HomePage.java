@@ -42,7 +42,7 @@ public class HomePage extends AppCompatActivity {
         db = FirebaseFirestore.getInstance();
 
         postList = new ArrayList<>();
-        postAdapter = new PostAdapter(postList);
+        postAdapter = new PostAdapter(this, postList);
         recyclerView.setAdapter(postAdapter);
 
         // Lấy dữ liệu thật từ Firestore
