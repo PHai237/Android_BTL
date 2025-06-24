@@ -10,8 +10,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.example.clubhub.club.ClubListActivity;
 import com.example.clubhub.profile.LoginActivity; // import LoginActivity ở package profile
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -85,35 +83,6 @@ public class HomePage extends AppCompatActivity {
                 return true;
             }
             // Xử lý tab khác ở đây nếu có
-            return false;
-        });
-        bottomNav.setOnItemSelectedListener(item -> {
-            int itemId = item.getItemId();
-            if (itemId == R.id.nav_post) {
-                // Đã ở trang Home rồi, không làm gì cả
-                return true;
-            }
-            if (itemId == R.id.nav_club) {
-                SharedPreferences prefs = getSharedPreferences("USER_SESSION", MODE_PRIVATE);
-                String email = prefs.getString("email", null);
-                Intent intent = new Intent(HomePage.this, ClubListActivity.class);
-                if (email != null) intent.putExtra("email", email);
-                startActivity(intent);
-                return true;
-            }
-            if (itemId == R.id.nav_profile) {
-                SharedPreferences prefs = getSharedPreferences("USER_SESSION", MODE_PRIVATE);
-                String email = prefs.getString("email", null);
-                Intent intent;
-                if (email == null) {
-                    intent = new Intent(HomePage.this, LoginActivity.class);
-                } else {
-                    intent = new Intent(HomePage.this, com.example.clubhub.profile.ProfileActivity.class);
-                    intent.putExtra("email", email);
-                }
-                startActivity(intent);
-                return true;
-            }
             return false;
         });
 

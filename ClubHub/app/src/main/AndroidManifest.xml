@@ -3,10 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.clubhub">
 
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.INTERNET"/>
-
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -50,18 +47,6 @@
             android:exported="true" />
         <activity
             android:name=".profile.EditProfileActivity"
-            android:exported="true" />
-        <activity
-            android:name=".club.ClubListActivity"
-            android:exported="true" />
-        <activity
-            android:name=".club.CreateClubActivity"
-            android:exported="true" />
-        <activity
-            android:name=".club.ClubDetailActivity"
-            android:exported="true" />
-        <activity
-            android:name=".club.EditClubActivity"
             android:exported="true" />
     </application>
 

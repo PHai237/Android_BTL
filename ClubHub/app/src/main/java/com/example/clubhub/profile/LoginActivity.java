@@ -97,7 +97,7 @@ public class LoginActivity extends AppCompatActivity {
                                 // Lưu email vào SharedPreferences khi đăng nhập thành công
                                 SharedPreferences prefs = getSharedPreferences("USER_SESSION", MODE_PRIVATE);
                                 prefs.edit().putString("email", email).apply();
-                                prefs.edit().putString("userId", email).apply();
+
                                 // Đăng nhập thành công
                                 String fullName = documentSnapshot.getString("fullName");
                                 String phoneNumber = documentSnapshot.getString("phoneNumber");
