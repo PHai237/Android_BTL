@@ -91,7 +91,7 @@ public class PostDetailActivity extends AppCompatActivity {
                 .orderBy("createdAt", Query.Direction.ASCENDING)
                 .addSnapshotListener((snapshots, e) -> {
                     if (e != null) {
-                        Toast.makeText(this, "Lỗi khi tải comment: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
                         return;
                     }
                     commentList.clear();
@@ -125,7 +125,7 @@ public class PostDetailActivity extends AppCompatActivity {
                     etComment.setText("");
                 })
                 .addOnFailureListener(e -> {
-                    Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "Lỗi khi gửi comment: " + e.getMessage(), Toast.LENGTH_SHORT).show();
                 });
     }
 }

@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:padding="20dp">
 
-        <!-- Header với nút quay lại và tiêu đề -->
+        <!-- Header with back button and title -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -25,19 +25,19 @@
                 android:layout_height="40dp"
                 android:background="?android:attr/selectableItemBackground"
                 android:src="@drawable/ic_back"
-                android:contentDescription="Quay lại"
+                android:contentDescription="Back"
                 app:tint="#222" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Tạo bài đăng mới"
+                android:text="Create New Post"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 android:layout_marginStart="10dp"/>
         </LinearLayout>
 
-        <!-- Spinner chọn CLB để đăng bài -->
+        <!-- Spinner to select club for post -->
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -58,7 +58,7 @@
                 android:background="@android:color/transparent"/>
         </com.google.android.material.textfield.TextInputLayout>
 
-        <!-- Nội dung bài đăng -->
+        <!-- Post content -->
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -77,12 +77,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="120dp"
                 android:gravity="top"
-                android:hint="Bạn muốn chia sẻ điều gì?"
+                android:hint="What would you like to share?"
                 android:textSize="16sp"
                 android:padding="12dp"/>
         </com.google.android.material.textfield.TextInputLayout>
 
-        <!-- Dòng nhập link + nút tìm ảnh -->
+        <!-- Link input + find image button -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -107,7 +107,7 @@
                     android:id="@+id/et_image_url"
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
-                    android:hint="Dán link ảnh online (tùy chọn)"
+                    android:hint="Paste image link (optional)"
                     android:textSize="15sp"
                     android:padding="10dp"/>
             </com.google.android.material.textfield.TextInputLayout>
@@ -116,7 +116,7 @@
                 android:id="@+id/btn_find_image"
                 android:layout_width="wrap_content"
                 android:layout_height="48dp"
-                android:text="Tìm ảnh"
+                android:text="Find Image"
                 android:textAllCaps="false"
                 android:layout_marginStart="10dp"/>
         </LinearLayout>
@@ -124,7 +124,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Dán link ảnh từ Unsplash, Pexels, Imgur, hoặc Google Drive (công khai)..."
+            android:text="Paste image link from Unsplash, Pexels, Imgur, or Google Drive (public)..."
             android:textSize="13sp"
             android:textColor="#888"
             android:layout_marginTop="6dp"
@@ -143,7 +143,7 @@
             android:id="@+id/btn_post"
             android:layout_width="match_parent"
             android:layout_height="48dp"
-            android:text="Đăng bài"
+            android:text="Post"
             android:textStyle="bold"
             android:textSize="17sp"
             android:backgroundTint="#4EFFBF"
