@@ -26,7 +26,7 @@ public class EditClubActivity extends AppCompatActivity {
         // Nhận thông tin từ Intent
         clubId = getIntent().getStringExtra("clubId");
         if (clubId == null) {
-            Toast.makeText(this, "Không tìm thấy câu lạc bộ!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Club not found!", Toast.LENGTH_SHORT).show();
             finish();
             return;
         }
@@ -68,12 +68,12 @@ public class EditClubActivity extends AppCompatActivity {
                         actvVisibility.setText(visibility);
                         actvType.setText(type);
                     } else {
-                        Toast.makeText(this, "Không tìm thấy câu lạc bộ!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(this, "Club not found!", Toast.LENGTH_SHORT).show();
                         finish();
                     }
                 })
                 .addOnFailureListener(e -> {
-                    Toast.makeText(this, "Không thể tải dữ liệu câu lạc bộ!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "Unable to load club data!", Toast.LENGTH_SHORT).show();
                     finish();
                 });
     }
@@ -86,7 +86,7 @@ public class EditClubActivity extends AppCompatActivity {
         String type = actvType.getText().toString().trim();
 
         if (clubName.isEmpty() || clubDesc.isEmpty() || visibility.isEmpty() || type.isEmpty()) {
-            Toast.makeText(this, "Vui lòng điền đầy đủ thông tin!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Please fill in all the information!", Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -95,7 +95,7 @@ public class EditClubActivity extends AppCompatActivity {
         db.collection("Clubs").document(clubId)
                 .update("name", clubName, "description", clubDesc, "isPublic", visibility.equals("Public"), "type", type)
                 .addOnSuccessListener(aVoid -> {
-                    Toast.makeText(EditClubActivity.this, "Câu lạc bộ đã được chỉnh sửa!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(EditClubActivity.this, "Club information has been updated!", Toast.LENGTH_SHORT).show();
 
                     // Quay lại ClubDetailActivity với dữ liệu câu lạc bộ đã chỉnh sửa
                     Intent intent = new Intent(EditClubActivity.this, ClubDetailActivity.class);
@@ -104,7 +104,7 @@ public class EditClubActivity extends AppCompatActivity {
                     finish(); // Quay lại màn hình trước
                 })
                 .addOnFailureListener(e -> {
-                    Toast.makeText(EditClubActivity.this, "Không thể lưu thông tin câu lạc bộ!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(EditClubActivity.this, "Unable to save club information!", Toast.LENGTH_SHORT).show();
                 });
     }
 
