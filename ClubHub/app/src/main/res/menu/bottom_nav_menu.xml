@@ -1,0 +1,6 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/nav_post" android:icon="@drawable/ic_post" android:title=""/>
+    <item android:id="@+id/nav_club" android:icon="@drawable/ic_club" android:title=""/>
+    <item android:id="@+id/nav_event" android:icon="@drawable/ic_event" android:title=""/>
+    <item android:id="@+id/nav_profile" android:icon="@drawable/ic_profile" android:title=""/>
+</menu>
