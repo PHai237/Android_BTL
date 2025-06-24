@@ -51,13 +51,13 @@
             android:layout_width="36dp"
             android:layout_height="36dp"
             android:src="@drawable/ic_add"
-            android:contentDescription="Tạo bài đăng mới"
+            android:contentDescription="Create a new post"
             android:background="@android:color/transparent"
             app:tint="@null" />
 
     </LinearLayout>
 
-    <!-- Danh sách bài post -->
+    <!-- Post List -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_posts"
         android:layout_width="0dp"
